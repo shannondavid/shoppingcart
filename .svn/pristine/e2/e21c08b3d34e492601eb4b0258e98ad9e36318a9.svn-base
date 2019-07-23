@@ -1,0 +1,157 @@
+// Finish and comment me!
+// Add whatever fields you think are necessary.
+
+package model;
+
+import java.math.BigDecimal;
+import java.text.NumberFormat;
+import java.util.Locale;
+import java.util.Objects;
+
+/**
+ * Class that stores information about an individual item.
+ * 
+ * @author davidshannon
+ * @version 1
+ */
+public final class Item {
+
+    // data fields:
+
+    //SHOULD I MAKE ANY OF THESE FINAL?
+    /** Name of the Item. */
+    private String myName;
+
+    /** Price of the Item. */
+    private BigDecimal myPrice;
+
+    /** Quantity of Bulk Item. */
+    private int myBulkQuantity;
+
+    /** Price of Bulk Item. */
+    private BigDecimal myBulkPrice;
+
+    /** Flag for bulk pricing. */
+    private boolean myBulkExists;
+
+    // constructors:
+
+    /**
+     * Constructor for an item without bulk purchasing options.
+     * 
+     * @param theName is the name of the item.
+     * @param thePrice is the price of the item.
+     */
+    public Item(final String theName, final BigDecimal thePrice) {
+        myName = theName;
+        myPrice = thePrice;
+        myBulkExists = false;
+    }
+
+    /**
+     * Constructor for an item with bulk pricing options.
+     * 
+     * @param theName is the name of the item.
+     * @param thePrice is the price of the item.
+     * @param theBulkQuantity is the amount of bulk items to be purchased.
+     * @param theBulkPrice is the price of the item when purchased in bulk.
+     */
+    public Item(final String theName, final BigDecimal thePrice, final int theBulkQuantity,
+                final BigDecimal theBulkPrice) {
+        myName = theName;
+        myPrice = thePrice;
+        myBulkQuantity = theBulkQuantity;
+        myBulkPrice = theBulkPrice;
+        myBulkExists = true;
+
+    }
+
+    // methods:
+
+    /**
+     * Method that returns name of the item.
+     * 
+     * @return the item name.
+     */
+    public String getName() {
+        return this.myName;
+    }
+
+    /**
+     * Method that returns price of the item.
+     * 
+     * @return the price of the item.
+     */
+    public BigDecimal getPrice() {
+        return this.myPrice;
+    }
+
+    /**
+     * Method that returns the quantity of the bulk item to be purchased.
+     * 
+     * @return the quantity of bulk items to be purchased.
+     */
+    public int getBulkQuantity() {
+        return this.myBulkQuantity;
+    }
+
+    /**
+     * Method that gets the bulk price.
+     * 
+     * @return the price of one unit of the item in bulk.
+     */
+    public BigDecimal getBulkPrice() {
+        return this.myBulkPrice;
+    }
+
+    /**
+     * Method that returns whether or not the item has bulk pricing or not.
+     * 
+     * @return whether or not the item has bulk pricing or not.
+     */
+    public boolean isBulk() {
+        return myBulkExists;
+    }
+
+    /**
+     * Returns string representation of the object.
+     * 
+     * @return representation of item.
+     */
+    @Override // IS THIS CORRECT ^ DO I NEED @RETURN? (it WASN'T AUTOPOPULATED)
+    public String toString() {
+        final NumberFormat nf = NumberFormat.getCurrencyInstance(Locale.US);
+        String s = "";
+        if (isBulk()) {
+            s = getName() + ", " + nf.format(getPrice()) + " (" + getBulkQuantity() + " for " + nf.format(getBulkPrice()) + ")";
+        } else {
+            s = getName() + ", " + nf.format(getPrice());
+        }
+        return s;
+    }
+
+    /**
+     * Returns true if the parameter is an Item with the same name and same price;
+     * false otherwise.
+     * 
+     * {@inheritDoc}
+     */
+    @Override
+    public boolean equals(final Object theOther) {
+
+        boolean result = false;
+        if ((theOther != null) && (theOther.getClass() == this.getClass())) {
+            final Item otherItem = (Item) theOther;
+            result = this.getName().equals(otherItem.getName())
+                     && this.getPrice().equals(otherItem.getPrice());
+        }
+        return result;
+    }
+
+    // CHECK JAVADOC DOCUMENTATION OF THIS + implementation
+    @Override
+    public int hashCode() {
+        return Objects.hash(getName(), getPrice());
+    }
+
+}

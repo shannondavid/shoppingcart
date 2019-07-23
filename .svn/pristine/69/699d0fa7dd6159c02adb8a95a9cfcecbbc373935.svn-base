@@ -1,0 +1,64 @@
+//package tests;
+//
+//import static org.junit.Assert.fail;
+//
+//import java.math.BigDecimal;
+//
+//import org.junit.Before;
+//import org.junit.Test;
+//
+//import model.Item;
+//
+//public class ItemTest {
+//
+//    
+//    /**
+//     * A method to initialize the test fixture before each test.
+//     */
+//    @Before
+//    public void setUp() {
+//        myItem = new Item("Item", new BigDecimal("10.00"));
+//    }
+//
+//    /**
+//     * Test of the non-bulk Item constructor. 
+//     */
+//    @Test
+//    public void testNonBulkConstructor() {
+//        assertEquals("Item", myItem.getName());
+//        assertEquals(new BigDecimal("10.00"), myItem.getDouble());
+//        assertEquals(false, myItem.isBulk());
+//    }
+//    
+//    /**
+//     * Test of the bulk constructor.
+//     */
+//    @Test
+//    public void testBulkConstructor() {
+//        myItem2 = new Item("Item2", new BigDecimal("11.00"), 5, new BigDecimal("15.00"));
+//        assertEquals("Item2", myItem2.getName());
+//        assertEquals(new BigDecimal("11.00"), myItem2.getPrice());
+//        assertEquals(5, myItem2.getBulkQuantity());
+//        assertEquals(new BigDecimal("15.00"), myItem2.getBulkPrice())
+//    }
+//    
+//    /**
+//     * Test of the simple constructor when myPrice is Null.
+//     */
+//    @Test(expected = NullPointerException.class)
+//    public void testPriceNull() {
+//        myItem3 = new Item("Item", null);
+//    }
+//    
+//    /**
+//     * Test of the bulk Constructor when BulkPrice is Null.
+//     */
+//    @Test(expected = NullPointerException.class)
+//    public void testBulkPriceNull() {
+//        myItem3 = new Item("Item", new BigDecimal("1.00"), 1, null);
+//    }
+//
+//
+//    
+//
+//}
